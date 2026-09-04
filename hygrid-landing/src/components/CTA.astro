@@ -1,0 +1,39 @@
+---
+import { ctaLink } from '../data/nav';
+---
+
+<section id="get-hygrid" class="relative py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="reveal relative overflow-hidden rounded-3xl border border-brand/20 bg-gradient-to-br from-brand/20 via-surface-card to-surface-raised px-8 py-16 text-center sm:px-16 lg:py-20">
+      <div class="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-brand/20 blur-[80px]" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-brand-light/10 blur-[80px]" aria-hidden="true"></div>
+
+      <div class="relative">
+        <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+          Ready to deliver data<br />
+          <span class="text-gradient-brand">directly to Excel?</span>
+        </h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg text-muted">
+          Stop exporting CSVs. Connect your data sources to Excel in seconds and give your users the reports they actually need.
+        </p>
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href={ctaLink.href}
+            class="group inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-base font-semibold text-white shadow-xl shadow-brand/30 transition hover:bg-brand-light hover:shadow-brand/50"
+          >
+            Get Hygrid
+            <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="/demo-videos"
+            class="inline-flex items-center gap-2 rounded-xl border border-border px-8 py-4 text-base font-semibold text-foreground transition hover:border-brand/30 hover:bg-foreground/5"
+          >
+            Watch Demo Videos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

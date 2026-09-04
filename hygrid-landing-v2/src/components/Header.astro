@@ -1,0 +1,272 @@
+---
+import { navLinks } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="Hygrid.io Home">
+      <img src="/logo.svg" alt="" width="36" height="36" class="logo-icon" />
+      <span class="logo-text">Hygrid<span class="logo-dot">.io</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  'nav-link',
+                  {
+                    active:
+                      link.href === '/'
+                        ? currentPath === '/'
+                        : currentPath.startsWith(link.href.replace('/#', '/')),
+                  },
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <a href="/get-hygrid" class="btn btn-primary header-cta">Get Hygrid</a>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <ul class="mobile-nav-list">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="mobile-nav-link">{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    transition: all var(--transition);
+  }
+
+  .header.scrolled {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+
+  .logo:hover {
+    color: var(--color-text);
+  }
+
+  .logo-icon {
+    transition: transform var(--transition);
+  }
+
+  .logo:hover .logo-icon {
+    transform: rotate(-5deg) scale(1.05);
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-dot {
+    color: var(--color-primary);
+  }
+
+  .nav {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .nav {
+      display: block;
+    }
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary);
+    background: var(--color-bg-muted);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-cta {
+    display: none;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 900px) {
+    .header-cta {
+      display: inline-flex;
+    }
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 8px;
+    transition: all var(--transition);
+  }
+
+  @media (min-width: 900px) {
+    .mobile-menu-btn {
+      display: none;
+    }
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: all var(--transition);
+  }
+
+  .mobile-menu-btn.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    display: none;
+    border-top: 1px solid var(--color-border);
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    padding: 1rem 1.5rem 1.5rem;
+  }
+
+  .mobile-nav.open {
+    display: block;
+    animation: fade-in-down 0.3s ease-out;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .mobile-nav-link:hover {
+    background: var(--color-bg-muted);
+    color: var(--color-primary);
+  }
+</style>
+
+<script>
+  const header = document.getElementById('header');
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = menuBtn.classList.toggle('open');
+    mobileNav?.classList.toggle('open', isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    mobileNav?.setAttribute('aria-hidden', String(!isOpen));
+  });
+
+  mobileNav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menuBtn?.classList.remove('open');
+      mobileNav?.classList.remove('open');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+      mobileNav?.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>

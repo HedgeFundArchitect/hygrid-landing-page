@@ -1,0 +1,91 @@
+---
+import { ctaLink } from '../data/nav';
+---
+
+<section id="home" class="relative min-h-screen overflow-hidden pt-24">
+  <div class="hero-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div
+    class="animate-pulse-glow pointer-events-none absolute top-1/4 left-1/2 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-brand/10 blur-[120px]"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto flex max-w-7xl flex-col items-center px-6 pt-16 pb-24 text-center lg:px-8 lg:pt-24">
+    <div class="reveal mb-6 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-4 py-1.5 text-sm text-brand-glow">
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-glow opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-light"></span>
+      </span>
+      Deliver data to Excel in seconds
+    </div>
+
+    <h1 class="reveal reveal-delay-1 font-display max-w-4xl text-4xl leading-tight font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+      We help Excel users and<br />
+      <span class="text-gradient">API/SQL developers</span> love each other…
+    </h1>
+
+    <p class="reveal reveal-delay-2 mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+      If your applications are powered by SQL Databases and Web APIs, your users still end up exporting to Excel.
+      Why not send them the data <em class="font-medium text-foreground not-italic">directly into Excel</em>?
+    </p>
+
+    <div class="reveal reveal-delay-3 mt-10 flex flex-col items-center gap-4 sm:flex-row">
+      <a
+        href={ctaLink.href}
+        class="group inline-flex items-center gap-2 rounded-xl bg-brand px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-brand/30 transition hover:bg-brand-light hover:shadow-brand/50"
+      >
+        Get Hygrid
+        <svg class="h-4 w-4 transition group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <a
+        href="#excel-features"
+        class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface-raised/60 px-7 py-3.5 text-base font-semibold text-foreground backdrop-blur transition hover:border-brand/30 hover:bg-surface-raised"
+      >
+        See Features
+      </a>
+    </div>
+
+    <div class="reveal reveal-delay-4 relative mt-16 w-full max-w-3xl">
+      <div class="animate-float relative">
+        <div class="shimmer-border absolute -top-px right-8 left-8 z-10 h-px rounded-full opacity-60"></div>
+        <img
+          src="/images/Excel-Hygrid-View.png"
+          alt="Hygrid Excel Add-In showing connected data reports"
+          class="feature-image w-full"
+          width="500"
+          height="509"
+          loading="eager"
+        />
+      </div>
+
+      <div class="animate-float-delayed absolute -right-4 top-8 hidden rounded-xl border border-border bg-surface-card px-4 py-3 shadow-xl lg:block">
+        <div class="flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/20">
+            <svg class="h-4 w-4 text-brand-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-muted">Performance</p>
+            <p class="text-sm font-semibold text-foreground">10,000 rows in milliseconds</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="animate-float absolute -left-4 bottom-8 hidden rounded-xl border border-border bg-surface-card px-4 py-3 shadow-xl lg:block">
+        <div class="flex items-center gap-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand/20">
+            <svg class="h-4 w-4 text-brand-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-muted">Auto-refresh</p>
+            <p class="text-sm font-semibold text-foreground">Pivot tables synced</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

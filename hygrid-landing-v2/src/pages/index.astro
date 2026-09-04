@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import HighlightCard from '../components/HighlightCard.astro';
+import { excelFeatures, excelHighlights, developerFeatures } from '../data/site';
+---
+
+<Layout>
+  <Hero />
+
+  <!-- Excel Features Section -->
+  <section id="excel-features" class="section">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="section-label">Excel Features</span>
+        <h2>Never leave Excel!</h2>
+        <p>
+          No more logging into your systems and downloading your data. Hygrid connects your Excel to any data source.
+        </p>
+      </div>
+
+      <div class="features-list">
+        {
+          excelFeatures.map((feature, i) => (
+            <FeatureRow
+              title={feature.title}
+              description={feature.description}
+              image={feature.image}
+              alt={feature.alt}
+              reversed={i % 2 !== 0}
+              index={i}
+            />
+          ))
+        }
+      </div>
+
+      <div class="highlights-grid stagger-children">
+        {
+          excelHighlights.map((item) => (
+            <HighlightCard
+              title={item.title}
+              description={item.description}
+              image={'image' in item ? item.image : undefined}
+              alt={'alt' in item ? item.alt : undefined}
+              icon={'icon' in item ? item.icon : undefined}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Developer Features Section -->
+  <section id="developer-features" class="section section-alt">
+    <div class="container">
+      <div class="section-heading reveal">
+        <span class="section-label">Developer Features</span>
+        <h2>Write SQL or an API call once</h2>
+        <p>Send to anyone's Excel. Enhance Excel as the report writer.</p>
+      </div>
+
+      <div class="features-list">
+        {
+          developerFeatures.map((feature, i) => (
+            <FeatureRow
+              title={feature.title}
+              description={feature.description}
+              image={feature.image}
+              alt={feature.alt}
+              reversed={i % 2 !== 0}
+              index={i}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <div class="cta-content">
+          <h2>Ready to deliver data to Excel in seconds?</h2>
+          <p>Start your 30-day free trial and see how Hygrid transforms your reporting workflow.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="/get-hygrid" class="btn btn-primary">Get Hygrid</a>
+          <a href="/demo-videos" class="btn btn-outline">Watch Demos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background: var(--color-primary-glow);
+    padding: 0.375rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .features-list {
+    margin-bottom: 3rem;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .highlights-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .highlights-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .cta-section {
+    padding-bottom: 6rem;
+  }
+
+  .cta-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 3.5rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: var(--radius-xl);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-content h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 500px;
+  }
+
+  .cta-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .cta-card .btn-primary {
+    background: white;
+    color: var(--color-primary);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-card .btn-primary:hover {
+    background: #f0f6ff;
+    color: var(--color-primary-dark);
+  }
+
+  .cta-card .btn-outline {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: white;
+  }
+
+  .cta-card .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+    color: white;
+  }
+</style>

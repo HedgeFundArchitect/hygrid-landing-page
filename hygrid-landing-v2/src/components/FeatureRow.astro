@@ -1,0 +1,100 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  reversed?: boolean;
+  index?: number;
+}
+
+const { title, description, image, alt, reversed = false, index = 0 } = Astro.props;
+---
+
+<article class:list={['feature-row', 'reveal', { reversed }]} style={`transition-delay: ${index * 100}ms`}>
+  <div class="feature-text">
+    <div class="feature-number">{String(index + 1).padStart(2, '0')}</div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="feature-image-wrap">
+    <div class="feature-image-glow"></div>
+    <img src={image} alt={alt} loading="lazy" class="feature-image" />
+  </div>
+</article>
+
+<style>
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 3rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .feature-row {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .feature-row.reversed .feature-text {
+      order: 2;
+    }
+
+    .feature-row.reversed .feature-image-wrap {
+      order: 1;
+    }
+  }
+
+  .feature-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-text h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .feature-text p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .feature-image-wrap {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .feature-image-glow {
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .feature-image {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-slow);
+    width: 100%;
+  }
+
+  .feature-image-wrap:hover .feature-image {
+    transform: scale(1.02);
+  }
+</style>

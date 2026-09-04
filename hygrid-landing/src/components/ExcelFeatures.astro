@@ -1,0 +1,99 @@
+---
+const sections = [
+  {
+    title: 'Run reports directly from any other systems.',
+    description:
+      'Here you can see every data report. It\'s already connected to your source systems, and presented in an easy to view display. No dealing with macros — just a one time Add-In is installed.',
+    image: '/images/Excel-Hygrid-View.png',
+    alt: 'Excel Hygrid View — browse and run connected reports',
+    reverse: false,
+  },
+  {
+    title: 'Run reports as formulas.',
+    description: 'You can run the data report directly from within an Excel formula.',
+    image: '/images/Run-Report-As-Formula-2.png',
+    alt: 'Run SQL report as an Excel formula',
+    reverse: true,
+  },
+  {
+    title: 'Reports are organized and searchable.',
+    description:
+      "Hygrid's Report Browser allows you to search and run any report from any of your systems.",
+    image: '/images/Searchable-437x321.png',
+    alt: 'Searchable report browser in Hygrid',
+    reverse: false,
+  },
+];
+
+const highlights = [
+  'All pivot tables refreshed after a report is run.',
+  'Lightening fast. Pull 10,000 rows in miliseconds',
+  'No dealing with Macros.',
+];
+---
+
+<section id="excel-features" class="relative py-24 lg:py-32">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-brand/5 to-transparent" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold tracking-widest text-brand-light uppercase">Excel Features</span>
+      <h2 class="font-display mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Never leave Excel!</h2>
+      <p class="mt-4 text-lg text-muted">
+        No more logging into your systems and downloading your data. Hygrid connects your Excel to any data source.
+      </p>
+    </div>
+
+    <div class="mt-20 space-y-24">
+      {
+        sections.map((section, i) => (
+          <div
+            class:list={[
+              'reveal reveal-delay-1 grid items-center gap-10 lg:grid-cols-2 lg:gap-16',
+              section.reverse && 'lg:[&>*:first-child]:order-2',
+            ]}
+          >
+            <div>
+              <h3 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">{section.title}</h3>
+              <p class="mt-4 text-base leading-relaxed text-muted">{section.description}</p>
+            </div>
+            <img
+              src={section.image}
+              alt={section.alt}
+              class="feature-image w-full"
+              loading="lazy"
+              width="700"
+              height="400"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-24 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class="space-y-6">
+        {
+          highlights.map((text) => (
+            <div class="flex items-start gap-3 rounded-xl border border-border bg-surface-card px-5 py-4">
+              <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <p class="text-sm font-medium text-foreground sm:text-base">{text}</p>
+            </div>
+          ))
+        }
+        <p class="text-sm text-muted">
+          Pivot tables refresh automatically with any Hygrid.io report refresh.
+        </p>
+      </div>
+      <img
+        src="/images/Pivot-Tables-Refresh.png"
+        alt="Pivot tables refresh automatically after Hygrid report run"
+        class="feature-image w-full"
+        loading="lazy"
+        width="1030"
+        height="332"
+      />
+    </div>
+  </div>
+</section>

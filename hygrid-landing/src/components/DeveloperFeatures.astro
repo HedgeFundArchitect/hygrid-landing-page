@@ -1,0 +1,87 @@
+---
+const sections = [
+  {
+    title: 'Plugs directly into your SQL Database or Restful API',
+    description:
+      'Connect to any SQL Server, Restful API, Quickbooks or Salesforce.',
+    image: '/images/Connect-to-data-source-1.png',
+    alt: 'Connect Hygrid to SQL databases and REST APIs',
+    reverse: false,
+  },
+  {
+    title: 'Write SQL with Parameters and Send to Any Excel Users in Seconds',
+    subtitle: 'Enhance Excel as the report writer.',
+    points: [
+      'Create your own taxonomy of reports that are searchable by users.',
+      'Create parameters for your reports empowering your users to run their own reports. You can add dropdown lists, combo boxes and date parameters.',
+    ],
+    image: '/images/Create-Report-v2-1-1030x652.png',
+    alt: 'Create Excel report from SQL with parameters',
+    reverse: true,
+  },
+  {
+    title: 'User permissioning. You control who is able to access your data.',
+    description: 'Create permissioning to control who is able to receive data to their Excel.',
+    image: '/images/User-permissions.png',
+    alt: 'Hygrid user permissions management',
+    reverse: false,
+  },
+];
+---
+
+<section id="developer-features" class="relative py-24 lg:py-32">
+  <div class="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="reveal mx-auto max-w-2xl text-center">
+      <span class="text-sm font-semibold tracking-widest text-brand-light uppercase">Developer Features</span>
+      <h2 class="font-display mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Write once, deliver everywhere</h2>
+      <p class="mt-4 text-lg text-muted">
+        Write SQL or an API call once and send to anyone's Excel.
+      </p>
+    </div>
+
+    <div class="mt-20 space-y-24">
+      {
+        sections.map((section) => (
+          <div
+            class:list={[
+              'reveal grid items-center gap-10 lg:grid-cols-2 lg:gap-16',
+              section.reverse && 'lg:[&>*:first-child]:order-2',
+            ]}
+          >
+            <div>
+              <h3 class="font-display text-2xl font-bold tracking-tight sm:text-3xl">{section.title}</h3>
+              {section.subtitle && <p class="mt-3 text-base text-brand-glow">{section.subtitle}</p>}
+              {section.description && (
+                <p class="mt-4 text-base leading-relaxed text-muted">{section.description}</p>
+              )}
+              {
+                section.points && (
+                  <ul class="mt-6 space-y-4">
+                    {section.points.map((point, idx) => (
+                      <li class="flex items-start gap-3 text-sm leading-relaxed text-muted sm:text-base">
+                        <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand/20 text-xs font-bold text-brand-glow">
+                          {idx + 1}
+                        </span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              }
+            </div>
+            <img
+              src={section.image}
+              alt={section.alt}
+              class="feature-image w-full"
+              loading="lazy"
+              width="1030"
+              height="652"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

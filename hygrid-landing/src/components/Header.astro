@@ -1,0 +1,120 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { navLinks, ctaLink } from '../data/nav';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="header"
+  class="fixed top-0 right-0 left-0 z-50 border-b border-transparent transition-all duration-300"
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <Logo />
+
+    <nav class="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
+      {
+        navLinks.map((link) => {
+          const isActive =
+            link.href === '/'
+              ? currentPath === '/'
+              : link.href.startsWith('/#')
+                ? false
+                : currentPath.startsWith(link.href);
+          return (
+          <a
+            href={link.href}
+            class:list={[
+              'text-sm font-medium transition-colors hover:text-foreground',
+              isActive ? 'text-foreground' : 'text-muted',
+            ]}
+          >
+            {link.label}
+          </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <ThemeToggle />
+
+      <a
+        href={ctaLink.href}
+        class="hidden rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition hover:bg-brand-light hover:shadow-brand/40 sm:inline-flex"
+      >
+        {ctaLink.label}
+      </a>
+
+      <button
+        id="menu-toggle"
+        type="button"
+        class="inline-flex items-center justify-center rounded-lg p-2 text-muted ring-1 ring-border transition hover:text-foreground lg:hidden"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-border bg-surface-raised/95 backdrop-blur-xl lg:hidden">
+    <nav class="flex flex-col gap-1 px-6 py-4" aria-label="Mobile navigation">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link rounded-lg px-3 py-2.5 text-sm font-medium text-muted transition hover:bg-foreground/5 hover:text-foreground"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={ctaLink.href}
+        class="mobile-nav-link mt-2 rounded-lg bg-brand px-3 py-2.5 text-center text-sm font-semibold text-white"
+      >
+        {ctaLink.label}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  window.addEventListener('scroll', () => {
+    if (!header) return;
+    if (window.scrollY > 20) {
+      header.classList.add('border-border', 'bg-surface/80', 'backdrop-blur-xl');
+    } else {
+      header.classList.remove('border-border', 'bg-surface/80', 'backdrop-blur-xl');
+    }
+  });
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
+  });
+</script>

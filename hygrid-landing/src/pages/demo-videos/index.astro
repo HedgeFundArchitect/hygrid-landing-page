@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import PageHero from '../../components/PageHero.astro';
+import Footer from '../../components/Footer.astro';
+
+const videos = [
+  {
+    title: 'Developer Experience',
+    description: 'Setting Up A Hygrid Report — see how developers connect data sources and publish reports to Excel users.',
+    youtubeId: 'sXIOrY7ffFQ',
+    iframeTitle: 'Setting Up A Hygrid Report',
+  },
+  {
+    title: 'Excel User Experience',
+    description: 'Hygrid.io — The Cool Way To Use Excel With Your Other Systems. See how Excel users run and refresh reports without leaving the spreadsheet.',
+    youtubeId: 'cHd72DOSgGU',
+    iframeTitle: 'Hygrid.io - The Cool Way To Use Excel With Your Other Systems',
+  },
+];
+---
+
+<Layout
+  title="Demo Videos | Hygrid.io"
+  description="Watch Hygrid demo videos for developers and Excel users. Learn how to set up reports and deliver data directly to Excel."
+>
+  <Header />
+  <main>
+    <PageHero
+      badge="Demo Videos"
+      title="See Hygrid in action"
+      subtitle="Watch how developers set up reports and how Excel users run them — all without leaving the spreadsheet."
+    />
+
+    <section class="pb-24 lg:pb-32">
+      <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:px-8">
+        {
+          videos.map((video, i) => (
+            <article class={`reveal reveal-delay-${i + 1}`}>
+              <h2 class="font-display text-2xl font-bold text-foreground">{video.title}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">{video.description}</p>
+              <div class="video-embed mt-6">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  title={video.iframeTitle}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

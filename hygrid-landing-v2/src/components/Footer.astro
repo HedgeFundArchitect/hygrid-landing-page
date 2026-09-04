@@ -1,0 +1,123 @@
+---
+import { site, navLinks } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="/logo.svg" alt="" width="32" height="32" />
+          <span>Hygrid<span class="dot">.io</span></span>
+        </a>
+        <p class="footer-tagline">{site.tagline}</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Navigation</h3>
+        <ul>
+          {navLinks.map((link) => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href="/get-hygrid">30 Day Trial</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {year} Hygrid.io. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-bg-muted);
+    border-top: 1px solid var(--color-border);
+    padding: 4rem 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-logo:hover {
+    color: var(--color-text);
+  }
+
+  .dot {
+    color: var(--color-primary);
+  }
+
+  .footer-tagline {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    max-width: 280px;
+  }
+
+  .footer-links h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+</style>

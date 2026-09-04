@@ -1,0 +1,84 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  image?: string;
+  alt?: string;
+}
+
+const { title, description, icon, image, alt } = Astro.props;
+---
+
+<div class="highlight-card reveal">
+  {image ? (
+    <div class="highlight-image">
+      <img src={image} alt={alt || title} loading="lazy" />
+    </div>
+  ) : (
+    <div class="highlight-icon" aria-hidden="true">
+      {icon === 'bolt' && (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      )}
+      {icon === 'shield' && (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      )}
+    </div>
+  )}
+  <h4>{title}</h4>
+  <p>{description}</p>
+</div>
+
+<style>
+  .highlight-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: all var(--transition);
+    height: 100%;
+  }
+
+  .highlight-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+
+  .highlight-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: white;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.25rem;
+  }
+
+  .highlight-image {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .highlight-image img {
+    width: 100%;
+  }
+
+  .highlight-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .highlight-card p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+</style>

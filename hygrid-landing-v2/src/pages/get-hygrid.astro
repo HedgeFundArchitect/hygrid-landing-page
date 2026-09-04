@@ -1,0 +1,287 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+---
+
+<Layout title="Get Hygrid | Hygrid.io" description="Start your 30-day free trial of Hygrid. Deliver data to Excel in seconds.">
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content reveal">
+        <span class="section-label">Get Started</span>
+        <h1>30 Day Trial</h1>
+        <p>Try Hygrid free for 30 days. Connect your data sources and start delivering reports directly to Excel.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="trial-grid">
+        <div class="trial-card reveal">
+          <div class="trial-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h2>What's included</h2>
+          <ul class="trial-features">
+            <li>Full access to all Hygrid features</li>
+            <li>Connect SQL databases and REST APIs</li>
+            <li>Unlimited report creation</li>
+            <li>Excel Add-In installation</li>
+            <li>User permissioning controls</li>
+            <li>Parameter-driven reports</li>
+          </ul>
+        </div>
+
+        <div class="contact-card reveal">
+          <h2>Send us mail</h2>
+          <p>Ready to get started? Reach out to our team and we'll help you set up your trial.</p>
+
+          <a href={`mailto:${site.email}?subject=Hygrid 30-Day Trial Request`} class="btn btn-primary contact-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            {site.email}
+          </a>
+
+          <div class="contact-divider">
+            <span>or explore first</span>
+          </div>
+
+          <div class="contact-links">
+            <a href="/demo-videos" class="btn btn-outline">Watch Demo Videos</a>
+            <a href="/#excel-features" class="btn btn-outline">View Features</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="steps reveal">
+        <h2>How it works</h2>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Connect</h3>
+            <p>Plug Hygrid into your SQL database or RESTful API — SQL Server, Quickbooks, Salesforce, and more.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Configure</h3>
+            <p>Write SQL with parameters, set permissions, and organize reports in a searchable taxonomy.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Deliver</h3>
+            <p>Excel users run reports directly in their spreadsheet — no macros, no exports, no hassle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 4rem 0 2rem;
+    background: var(--color-bg-hero);
+  }
+
+  .page-hero-content {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .page-hero-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .page-hero-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background: var(--color-primary-glow);
+    padding: 0.375rem 0.875rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .trial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .trial-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .trial-card,
+  .contact-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    transition: all var(--transition);
+  }
+
+  .trial-card:hover,
+  .contact-card:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .trial-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    color: white;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+  }
+
+  .trial-card h2,
+  .contact-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .trial-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .trial-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .trial-features li::before {
+    content: '✓';
+    color: var(--color-primary);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .contact-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .contact-divider::before,
+  .contact-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-links .btn {
+    justify-content: center;
+  }
+
+  .steps {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .steps h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 2.5rem;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .steps-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .step {
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+  }
+
+  .step h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .step p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+</style>
